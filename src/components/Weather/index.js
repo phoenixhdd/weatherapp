@@ -14,18 +14,27 @@ class Weather extends Component {
   }
 
   render () {
-    const { weather } = this.props
-    console.log(weather)
+    const { weather, isLoading, isEmpty } = this.props
+    // console.log(this.props)
     return (
       <div>
-        asdas
+        {!isLoading && !isEmpty && (
+          <React.Fragment>
+            <h1>{weather.city.name}</h1>
+            <h2>{weather.list[0].main.temp - 273.15}</h2>
+          </React.Fragment>
+        )}
       </div>
     )
   }
 }
 
 function mapStateToProps ({ weather }) {
-  return { weather: weather }
+  return {
+    weather: weather.weather.data,
+    isLoading: weather.weather.isLoading,
+    isEmpty: weather.weather.isEmpty
+  }
 }
 
 export default connect(mapStateToProps, { getWeather })(
