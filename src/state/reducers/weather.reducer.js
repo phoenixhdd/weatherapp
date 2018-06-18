@@ -7,7 +7,7 @@ import {
 const initialState = {
   weather: {
     isLoading: false,
-    isEmpty: false,
+    isEmpty: true,
     data: {}
   }
 }
